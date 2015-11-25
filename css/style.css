@@ -1,25 +1,49 @@
+body {
+	margin: 10px;
+	padding: 0;
+	font-family: sans-serif;
+}
+html, body {
+	height: 100%;
+	width: 580px;
+}
+
+#intro, #controls, #filters {
+	font-size: 0.85em;
+	margin-bottom: 1em;
+}
+
+#intro {
+	border-bottom: 1px solid #333;
+}
+
+#intro h1 {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
 .chart text {
 	text-anchor: middle;
 }
 
 .chart text.whitetext {
 	fill: white;
-	font: 10px "open sans";
+	font: 10px;
 }
 
 .chart text.blacktext {
 	fill: black;
-	font: 10px "open sans";
+	font: 10px;
 }
 
 .chart text.title {
 	fill: #333;
-	font: 22px "open sans";
+	font: 22px;
 }
 
 .axis text {
 	fill: black;
-	font: 12px "open sans";
+	font: 12px;
 }
 
 .axis path, .axis line {

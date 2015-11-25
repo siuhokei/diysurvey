@@ -143,7 +143,7 @@ $.getJSON("js/raw.json", function(data) {
 
 	function drawPieChart(options) {
 		var canvasHeight = 400,
-			canvasWidth = 590;
+			canvasWidth = 580;
 
 		var pie = new d3pie("result", {
 			"header": {
@@ -259,7 +259,7 @@ $.getJSON("js/raw.json", function(data) {
 				bottom: 20,
 				left: 120
 			},
-			width = 590 - margin.left - margin.right,
+			width = 580 - margin.left - margin.right,
 			barHeight = 35,
 			height = barHeight * data.length,
 			color = d3.scale.category10();
