@@ -2,7 +2,11 @@ $.getJSON("js/raw.json", function(data) {
 	var source = [];
 
 	$.each(data, function(i, d) {
-		source.push(d);
+		if ($(location).attr("pathname") == "lihkg.html") {
+			console.log("Show only lihkg results.");
+			if (i > 490)
+				source.push(d);
+		} else source.push(d);
 	});
 
 	console.log(source.length + " entries collected.");
@@ -143,7 +147,7 @@ $.getJSON("js/raw.json", function(data) {
 
 	function drawPieChart(options) {
 		var canvasHeight = 400,
-			canvasWidth = 580;
+			canvasWidth = 590;
 
 		var pie = new d3pie("result", {
 			"header": {
@@ -259,7 +263,7 @@ $.getJSON("js/raw.json", function(data) {
 				bottom: 20,
 				left: 120
 			},
-			width = 580 - margin.left - margin.right,
+			width = 590 - margin.left - margin.right,
 			barHeight = 35,
 			height = barHeight * data.length,
 			color = d3.scale.category10();
@@ -279,8 +283,6 @@ $.getJSON("js/raw.json", function(data) {
 		var chart = d3.select(".chart")
 			.attr("width", width + margin.left + margin.right)
 			.attr("height", height + margin.top + margin.bottom)
-			.attr("preserveAspectRatio", "xMinYMin meet")
-			.attr("viewBox", "0 0 " + (width + margin.left + margin.right) + " " + (height + margin.top + margin.bottom))
 			.append("g")
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
