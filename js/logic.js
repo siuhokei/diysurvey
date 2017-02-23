@@ -2,7 +2,7 @@ $.getJSON("js/raw.json", function(data) {
 	var source = [];
 
 	$.each(data, function(i, d) {
-		if ($(location).attr("pathname") == "/lihkg.html") {
+		if ($(location).attr("pathname") == "/diysurvey/lihkg.html") {
 			console.log("Show only lihkg results.");
 			if (i > 490)
 				source.push(d);
