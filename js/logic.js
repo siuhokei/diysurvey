@@ -274,7 +274,7 @@ $.getJSON("js/raw.json", function(data) {
 			})])
 			.range([0, width]);
 
-		var y = d3.scale.ordinal()
+		var y = d3.scaleOrdinal()
 			.domain(data.map(function(d) {
 				return d.label;
 			}))
