@@ -274,11 +274,11 @@ $.getJSON("js/raw.json", function(data) {
 			})])
 			.range([0, width]);
 
-		var y = d3.scaleOrdinal()
+		var y = d3.scaleBand()
 			.domain(data.map(function(d) {
 				return d.label;
 			}))
-			.rangeRoundBands([0, height], 0);
+			.rangeRound([0, height]);
 
 		var chart = d3.select(".chart")
 			.attr("width", width + margin.left + margin.right)
