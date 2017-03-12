@@ -268,7 +268,7 @@ $.getJSON("js/raw.json", function(data) {
 			height = barHeight * data.length,
 			color = d3.scaleOrdinal(d3.schemeCategory10);
 
-		var x = d3.scale.linear()
+		var x = d3.scaleLinear()
 			.domain([0, d3.max(data, function(d) {
 				return d.value;
 			})])
