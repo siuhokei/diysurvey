@@ -1,14 +1,188 @@
 <!doctype html>
 <html>
+
 <head>
 	<title>眾樂樂不如獨樂樂 - 自慰習慣及心態調查結果</title>
-	<meta charset="utf-8">
+	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<link rel="stylesheet" href="css/style.css" />
-	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="http://d3js.org/d3.v4.min.js"></script>
-	<script src="https://cdn.rawgit.com/benkeen/d3pie/master/d3pie/d3pie.min.js"></script>
-	<script src="js/logic.js"></script>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+	<style>
+    body {
+        font-size: .75em;
+        font-style: sans-serif;
+    }
+    
+    form {
+        margin-bottom: 1em;
+    }
+    </style>
+	<script>
+		d3.csv("js/test.csv", function(error, source) {
+			if (error) throw error;
+
+			$(function() {
+				$("#questions").val("q1");
+				parseQuestions("q1");
+			});
+
+			$("#questions").change(function() {
+				$("#gender").val("全部");
+				$("#age").val("全部");
+				parseQuestions($("#questions").val());
+			});
+
+			$("#gender").change(function() {
+				parseQuestions($("#questions").val());
+			})
+
+			$("#age").change(function() {
+				parseQuestions($("#questions").val());
+			})
+
+			function parseQuestions(number) {
+				var name = $("#questions option:selected").text();
+
+				if (number != "")
+					switch (number) {
+						case "q1":
+						$("#gender").prop("disabled", "disabled");
+						$("#age").prop("disabled", false);
+						createChart(number, name, false, true);
+						break;
+						case "q2":
+						$("#gender").prop("disabled", false);
+						$("#age").prop("disabled", "disabled");
+						createChart(number, name, true, false);
+						break;
+						case "q3":
+						case "q4":
+						case "q5":
+						case "q6":
+						case "q7":
+						case "q8":
+						case "q9":
+						case "q10":
+						case "q11":
+						case "q12":
+						case "q13":
+						case "q14":
+						case "q15":
+						$("#gender").prop("disabled", false);
+						$("#age").prop("disabled", false);
+						createChart(number, name, true, true);
+						break;
+					}
+			}
+
+			function createChart(question, name, isGender, isAge) {
+				var result = [],
+					data = [],
+					qnum = question.match(/\d+/)[0],
+					attribute = "d." + question,
+					genderFilter = (isGender) ? $("#gender").val() : "全部",
+					ageFilter = (isAge)? $("#age").val() : "全部";
+
+				if (question != "") {
+					if (qnum >= 4 && qnum <= 12) {
+						$.each(source, function(i, d) {
+							if (d.q3 == "有")
+								data.push(d);
+						});
+					} 
+					else data = source;
+
+					$.each(data, function(i, d) {
+						if (d.q1 == genderFilter && d.q2 == ageFilter)
+							result.push(eval(attribute));
+						else if (d.q1 == genderFilter && ageFilter == "全部")
+							result.push(eval(attribute));
+						else if (genderFilter == "全部" && d.q2 == ageFilter)
+							result.push(eval(attribute));
+						else if (genderFilter == "全部" && ageFilter == "全部")
+							result.push(eval(attribute));
+					});
+				}
+
+				if (qnum == 6 || qnum == 8 || qnum == 10) {
+					var temp = [];
+
+					$.each(result, function(i, d) {
+						d = d.replace("，", ", ");
+						$.each(d.split(", "), function(i, d) {
+							temp.push(d)
+						})
+					});
+
+					result = temp;
+
+					if (result.length > 0) {
+						showTable(getCounts(result));
+						/*drawBarChart({
+							titleText: name,
+							subtitleText: "",
+							data: getCounts(result),
+							size: data.length
+						});*/
+					}
+				}
+				else if (result.length > 0) {
+					showTable(getCounts(result));
+					/*drawPieChart({
+						titleText: name,
+						subtitleText: "",
+						data: getCounts(result)
+					});*/
+				}
+				else $("#result").html("沒有數據。");
+			}
+
+			function getCounts(data) {
+				var counts = {};
+				var arr = [];
+
+				$.each(data, function(i, d) {
+					counts[d] = (counts[d] || 0) + 1;
+				});
+
+				$.each(Object.keys(counts), function(i, d) {
+					arr.push({
+						label: d,
+						value: counts[d],
+						percentage: (counts[d] / data.length * 100).toFixed(2)
+					});
+				});
+
+				return arr;
+			}
+
+			function showTable(data) {
+				$("#details").DataTable({
+					"data": data,
+					"paging": false,
+					"searching": false,
+					"destroy": true,
+					"columns": [{
+						"data": "label",
+						"title": "Choice"
+					}, {
+						"data": "value",
+						"title": "Count"
+					}, {
+						"data": "percentage",
+						"title": "Percentage"
+					}],
+					"order": [
+						[1, "dsc"]
+					]
+				});
+			}
+
+		});
+	</script>
 </head>
 <body>
 	<div id="intro">
@@ -40,14 +214,14 @@
 		</select>
 	</div>
 	<div id="filters">
-		<label for="gender">以性別篩選：</label>
+		<label for="gender">請選擇性別：</label>
 		<select id="gender">
 			<option value="全部" selected>全部</option>
 			<option value="男生">男生</option>
 			<option value="女生">女生</option>
 		</select>
 		<br/>
-		<label for="age">以年齡組別篩選：</label>
+		<label for="age">請選擇年齡：</label>
 		<select id="age">
 			<option value="全部" selected>全部</option>
 			<option value="10-14">10-14歲</option>
@@ -64,6 +238,8 @@
 			<option value="大過64歲">大過64歲</option>
 		</select>
 	</div>
-	<div id="result"></div>
+	<div id="result">
+		<table id="details" class="display compact stripe" width="100%"></table>
+	</div>
 </body>
 </html>
