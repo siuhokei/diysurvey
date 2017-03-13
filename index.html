@@ -10,16 +10,6 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<script src="https://d3js.org/d3.v4.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-	<style>
-    body {
-        font-size: .75em;
-        font-style: sans-serif;
-    }
-    
-    form {
-        margin-bottom: 1em;
-    }
-    </style>
 	<script>
 		d3.csv("js/test.csv", function(error, source) {
 			if (error) throw error;
@@ -167,13 +157,13 @@
 					"destroy": true,
 					"columns": [{
 						"data": "label",
-						"title": "Choice"
+						"title": "選擇"
 					}, {
 						"data": "value",
-						"title": "Count"
+						"title": "數目"
 					}, {
 						"data": "percentage",
-						"title": "Percentage"
+						"title": "百分比"
 					}],
 					"order": [
 						[1, "dsc"]
