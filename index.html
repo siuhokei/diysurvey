@@ -129,6 +129,9 @@
 				}
 				else {
 					$("#details").empty();
+					$("#details").DataTable({
+						"info": false
+					});
 					$("#message").html("沒有數據。");
 				}
 			}
