@@ -39,15 +39,15 @@
 				if (number != "")
 					switch (number) {
 						case "q1":
-						$("#gender").prop("disabled", "disabled");
-						$("#age").prop("disabled", false);
-						createChart(number, name, false, true);
-						break;
+							$("#gender").prop("disabled", "disabled");
+							$("#age").prop("disabled", false);
+							createChart(number, name, false, true);
+							break;
 						case "q2":
-						$("#gender").prop("disabled", false);
-						$("#age").prop("disabled", "disabled");
-						createChart(number, name, true, false);
-						break;
+							$("#gender").prop("disabled", false);
+							$("#age").prop("disabled", "disabled");
+							createChart(number, name, true, false);
+							break;
 						case "q3":
 						case "q4":
 						case "q5":
@@ -61,10 +61,10 @@
 						case "q13":
 						case "q14":
 						case "q15":
-						$("#gender").prop("disabled", false);
-						$("#age").prop("disabled", false);
-						createChart(number, name, true, true);
-						break;
+							$("#gender").prop("disabled", false);
+							$("#age").prop("disabled", false);
+							createChart(number, name, true, true);
+							break;
 					}
 			}
 
@@ -127,7 +127,7 @@
 						data: getCounts(result)
 					});*/
 				}
-				else $("#result").html("沒有數據。");
+				else $("#result").append("<p>沒有數據。</p>");
 			}
 
 			function getCounts(data) {
