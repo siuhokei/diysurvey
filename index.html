@@ -127,7 +127,10 @@
 						data: getCounts(result)
 					});*/
 				}
-				else $("#result").append("<p>沒有數據。</p>");
+				else {
+					$("#details").empty();
+					$("#message").html("沒有數據。");
+				}
 			}
 
 			function getCounts(data) {
@@ -150,6 +153,7 @@
 			}
 
 			function showTable(data) {
+				$("#message").empty();
 				$("#details").DataTable({
 					"data": data,
 					"paging": false,
@@ -230,6 +234,7 @@
 	</div>
 	<div id="result">
 		<table id="details" class="display compact stripe" width="100%"></table>
+		<div id="message"></div>
 	</div>
 </body>
 </html>
