@@ -1,58 +1,21 @@
 body {
-	margin: 10px;
-	padding: 0;
 	font-family: sans-serif;
 }
 html, body {
 	height: 100%;
-	width: 580px;
 }
-
-#intro, #controls, #filters {
+h1 {
+	font-size: 1.25em;
+}
+p, label {
 	font-size: 0.85em;
-	margin-bottom: 1em;
 }
-
-#intro {
-	border-bottom: 1px solid #333;
+#intro, #filters {
+	border-bottom: 1px solid black;
 }
-
-#intro h1 {
-	font-size: 1.5em;
-	font-weight: bold;
+#controls {
+	padding-top: 1em;
 }
-
-.chart text {
-	text-anchor: middle;
+#filters {
+	padding-bottom: 1em;
 }
-
-.chart text.whitetext {
-	fill: white;
-	font: 10px;
-}
-
-.chart text.blacktext {
-	fill: black;
-	font: 10px;
-}
-
-.chart text.title {
-	fill: #333;
-	font: 22px;
-}
-
-.axis text {
-	fill: black;
-	font: 12px;
-}
-
-.axis path, .axis line {
-	fill: none;
-	stroke: #000;
-	shape-rendering: crispEdges;
-}
-
-.y.axis path {
-	display: none;
-}
-
