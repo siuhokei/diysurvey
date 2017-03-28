@@ -106,6 +106,7 @@ $(document).ready(function() {
 							size: data.length
 						});
 						showTable(getCounts(result));
+						$("#message").empty();
 					}
 				}
 				else if (result.length > 0) {
@@ -116,8 +117,10 @@ $(document).ready(function() {
 						data: getCounts(result)
 					});
 					showTable(getCounts(result));
+					$("#message").empty();
 				}
 				else {
+					$("#chart").html("");
 					$("#details").empty();
 					$(".dataTables_info").empty();
 					$("#message").html("沒有數據。");
