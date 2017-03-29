@@ -3,6 +3,8 @@ $(document).ready(function() {
 		if (error) throw error;
 
 		$(function() {
+			$("#gender").val("全部");
+			$("#age").val("全部");
 			$("#questions").val("q1");
 			parseQuestions("q1");
 		});
