@@ -1,4 +1,4 @@
-var CLIENT_ID = '764637031425-m650c1qsp7esereg198mr3lvhffnhood.apps.googleusercontent.com';
+var CLIENT_ID = '764637031425-6l0kforea6dnec7fce4oa4glthq3tf6e.apps.googleusercontent.com';
 var API_KEY = 'AIzaSyAtZCw-S9NvomUDRvJRdmrjjAlGgfbsHgE';
 var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
 var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
