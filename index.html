@@ -6,21 +6,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<link rel="stylesheet" href="css/style.css" />
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	<script src="https://d3js.org/d3.v4.min.js"></script>
-	<script src="js/d3pie.min.js"></script>
-	<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-	<script src="js/logic.js"></script>
-	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-		ga('create', 'UA-93946461-1', 'auto');
-		ga('send', 'pageview');
-	</script>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
 </head>
 <body>
 	<div id="intro">
@@ -30,7 +16,6 @@
 		<p>他們又弄了個短片比賽，學生在大學校園訪問學生有關自慰的種種。</p>
 		<p>正經做過的自慰調查真的不多，多見到的是其他討論區那些自行設立的調查。不如自己照中山大學的問卷依樣畫葫蘆吧，就有了這個問卷。</p>
 		<p>如果大家不介意做做看，請到<a href="http://bit.ly/14Tb7Ns" target="_blank">這裡</a>。</p>
-		<p><strong>最後更新日期：22/8/2017</strong></p>
 	</div>
 	<div id="controls">
 		<label for="questions">請選擇問題：</label>
@@ -83,5 +68,15 @@
 		<table id="details" class="display compact stripe" width="100%"></table>
 		<div id="message"></div>
 	</div>
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="js/d3pie.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+	<script src="js/logic.js"></script>
+	<script async defer src="https://apis.google.com/js/api.js"
+		onload="this.onload=function(){};handleClientLoad()"
+		onreadystatechange="if (this.readyState === 'complete') this.onload()">
+	</script>
 </body>
 </html>
