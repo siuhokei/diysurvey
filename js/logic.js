@@ -79,7 +79,6 @@ function initClient() {
 							case "q11":
 							case "q12":
 							case "q13":
-							case "q14":
 							case "q15":
 								$("#gender").prop("disabled", false);
 								$("#age").prop("disabled", false);
