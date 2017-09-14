@@ -28,7 +28,7 @@ function initClient() {
 				$(function() {
 					$("#gender").val("全部");
 					$("#age").val("全部");
-					$("#relationship").val("全部");
+					// $("#relationship").val("全部");
 					$("#questions").val("q1");
 					console.log("init");
 					parseQuestions("q1");
@@ -37,7 +37,7 @@ function initClient() {
 				$("#questions").change(function() {
 					$("#gender").val("全部");
 					$("#age").val("全部");
-					$("#relationship").val("全部");
+					// $("#relationship").val("全部");
 					parseQuestions($("#questions").val());
 				});
 
@@ -60,7 +60,7 @@ function initClient() {
 						switch (number) {
 							case "q1":
 								$("#gender").prop("disabled", "disabled");
-								$("#age").prop("disabled", false);
+								// $("#age").prop("disabled", false);
 								$("#relationship").prop("disabled", false);
 								createChart(number, name, false, true, true);
 								console.log(number);
@@ -68,7 +68,7 @@ function initClient() {
 							case "q2":
 								$("#gender").prop("disabled", false);
 								$("#age").prop("disabled", "disabled");
-								$("#relationship").prop("disabled", false);
+								// $("#relationship").prop("disabled", false);
 								createChart(number, name, true, false, true);
 								console.log(number);
 								break;
@@ -86,14 +86,14 @@ function initClient() {
 							case "q15":
 								$("#gender").prop("disabled", false);
 								$("#age").prop("disabled", false);
-								$("#relationship").prop("disabled", false);
+								// $("#relationship").prop("disabled", false);
 								createChart(number, name, true, true, true);
 								console.log(number);
 								break;
 							case "q14":
 								$("#gender").prop("disabled", false);
 								$("#age").prop("disabled", false);
-								$("#relationship").prop("disabled", "disabled");
+								// $("#relationship").prop("disabled", "disabled");
 								createChart(number, name, true, true, false);
 								console.log(number)
 ;								break;
