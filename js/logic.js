@@ -100,7 +100,7 @@ function initClient() {
 						qnum = question.match(/\d+/)[0],
 						attribute = "d[" + qnum + "]",
 						genderFilter = (isGender) ? $("#gender").val() : "全部",
-						ageFilter = (isAge) ? $("#age").val() : "全部";
+						ageFilter = (isAge) ? $("#age").val() : "全部",
 						relationFilter = (isRelation) ? $("#relationship").val() : "全部";
 
 						if (question != "") {
