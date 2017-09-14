@@ -85,7 +85,7 @@ function initClient() {
 								$("#relationship").prop("disabled", false);
 								createChart(number, name, true, true, true);
 								break;
-							case "q14"
+							case "q14":
 								$("#gender").prop("disabled", false);
 								$("#age").prop("disabled", false);
 								$("#relationship").prop("disabled", "disabled");
