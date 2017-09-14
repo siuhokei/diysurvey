@@ -95,8 +95,8 @@ function initClient() {
 								$("#age").prop("disabled", false);
 								// $("#relationship").prop("disabled", "disabled");
 								createChart(number, name, true, true, false);
-								console.log(number)
-;								break;
+								console.log(number);
+								break;
 						}
 					}
 
