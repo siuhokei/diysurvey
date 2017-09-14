@@ -1,4 +1,4 @@
-var CLIENT_ID = '764637031425-m650c1qsp7esereg198mr3lvhffnhood.apps.googleusercontent.com';
+var CLIENT_ID = '764637031425-6l0kforea6dnec7fce4oa4glthq3tf6e.apps.googleusercontent.com';
 var API_KEY = 'AIzaSyAtZCw-S9NvomUDRvJRdmrjjAlGgfbsHgE';
 var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
 var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
@@ -22,22 +22,18 @@ function initClient() {
 		}).then(function(response) {
 			var source = response.result.values;
 			if (source.length > 0) {
-				console.log(source);
 				source.shift();
 
 				$(function() {
 					$("#gender").val("全部");
 					$("#age").val("全部");
-					$("#relationship").val("全部");
 					$("#questions").val("q1");
-					console.log("init");
 					parseQuestions("q1");
 				});
 
 				$("#questions").change(function() {
 					$("#gender").val("全部");
 					$("#age").val("全部");
-					$("#relationship").val("全部");
 					parseQuestions($("#questions").val());
 				});
 
@@ -49,29 +45,21 @@ function initClient() {
 					parseQuestions($("#questions").val());
 				})
 
-				$("#relationship").change(function() {
-					parseQuestions($("#questions").val());
-				})
-
 				function parseQuestions(number) {
 					var name = $("#questions option:selected").text();
 
 					if (number != "")
 						switch (number) {
 							case "q1":
-								$("#gender").prop("disabled", "disabled");
-								$("#age").prop("disabled", false);
-								$("#relationship").prop("disabled", false);
-								createChart(number, name, false, true, true);
-								console.log(number);
-								break;
+							$("#gender").prop("disabled", "disabled");
+							$("#age").prop("disabled", false);
+							createChart(number, name, false, true);
+							break;
 							case "q2":
-								$("#gender").prop("disabled", false);
-								$("#age").prop("disabled", "disabled");
-								$("#relationship").prop("disabled", false);
-								createChart(number, name, true, false, true);
-								console.log(number);
-								break;
+							$("#gender").prop("disabled", false);
+							$("#age").prop("disabled", "disabled");
+							createChart(number, name, true, false);
+							break;
 							case "q3":
 							case "q4":
 							case "q5":
@@ -83,31 +71,22 @@ function initClient() {
 							case "q11":
 							case "q12":
 							case "q13":
-							case "q15":
-								$("#gender").prop("disabled", false);
-								$("#age").prop("disabled", false);
-								$("#relationship").prop("disabled", false);
-								createChart(number, name, true, true, true);
-								console.log(number);
-								break;
 							case "q14":
-								$("#gender").prop("disabled", false);
-								$("#age").prop("disabled", false);
-								$("#relationship").prop("disabled", "disabled");
-								createChart(number, name, true, true, false);
-								console.log(number);
-								break;
+							case "q15":
+							$("#gender").prop("disabled", false);
+							$("#age").prop("disabled", false);
+							createChart(number, name, true, true);
+							break;
 						}
 					}
 
-					function createChart(question, name, isGender, isAge, isRelation) {
+					function createChart(question, name, isGender, isAge) {
 						var result = [],
 						data = [],
 						qnum = question.match(/\d+/)[0],
 						attribute = "d[" + qnum + "]",
 						genderFilter = (isGender) ? $("#gender").val() : "全部",
-						ageFilter = (isAge) ? $("#age").val() : "全部",
-						relationFilter = (isRelation) ? $("#relationship").val() : "全部";
+						ageFilter = (isAge)? $("#age").val() : "全部";
 
 						if (question != "") {
 							if (qnum >= 4 && qnum <= 12) {
@@ -119,23 +98,13 @@ function initClient() {
 							else data = source;
 
 							$.each(data, function(i, d) {
-								if (d[1] == genderFilter && d[2] == ageFilter && d[14] == relationFilter)
+								if (d[1] == genderFilter && d[2] == ageFilter)
 									result.push(eval(attribute));
-								else if (d[1] == genderFilter && ageFilter == "全部" && d[14] == relationFilter)
+								else if (d[1] == genderFilter && ageFilter == "全部")
 									result.push(eval(attribute));
-								else if (d[1] == genderFilter && ageFilter == "全部" && relationFilter == "全部")
+								else if (genderFilter == "全部" && d[2] == ageFilter)
 									result.push(eval(attribute));
-								else if (d[1] == genderFilter && d[2] == ageFilter && relationFilter == "全部")
-									result.push(eval(attribute));
-								else if (genderFilter == "全部" && d[2] == ageFilter && d[14] == relationFilter)
-									result.push(eval(attribute));
-								else if (genderFilter == "全部" && ageFilter == "全部" && d[14] == relationFilter)
-									result.push(eval(attribute));
-								else if (genderFilter == "全部" && ageFilter == "全部" && relationFilter == "全部")
-									result.push(eval(attribute));
-								else if (genderFilter == "全部" && d[2] == ageFilter && relationFilter == "全部")
-									result.push(eval(attribute));
-								else if (genderFilter == "全部" && ageFilter == "全部" && relationFilter == "全部")
+								else if (genderFilter == "全部" && ageFilter == "全部")
 									result.push(eval(attribute));
 							});
 						}
@@ -156,7 +125,7 @@ function initClient() {
 								console.log(getCounts(result));
 								drawPieChart({
 									titleText: name,
-									subtitleText: $("#gender").val() + " / " + $("#age").val() + ($("#age").val() == "全部" ? "" : "歲") + $("#relationship").val(),
+									subtitleText: $("#gender").val() + " / " + $("#age").val() + ($("#age").val() == "全部" ? "" : "歲"),
 									data: getCounts(result),
 									size: data.length
 								});
@@ -168,7 +137,7 @@ function initClient() {
 							console.log(getCounts(result));
 							drawPieChart({
 								titleText: name,
-								subtitleText: $("#gender").val() + " / " + $("#age").val() + ($("#age").val() == "全部" ? "" : "歲") + $("#relationship").val(),
+								subtitleText: $("#gender").val() + " / " + $("#age").val() + ($("#age").val() == "全部" ? "" : "歲"),
 								data: getCounts(result)
 							});
 							showTable(getCounts(result));
