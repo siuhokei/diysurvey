@@ -27,6 +27,7 @@ function initClient() {
 				$(function() {
 					$("#gender").val("全部");
 					$("#age").val("全部");
+					$("#relation").val("全部");
 					$("#questions").val("q1");
 					parseQuestions("q1");
 				});
@@ -34,6 +35,7 @@ function initClient() {
 				$("#questions").change(function() {
 					$("#gender").val("全部");
 					$("#age").val("全部");
+					$("#relation").val("全部");
 					parseQuestions($("#questions").val());
 				});
 
@@ -45,6 +47,10 @@ function initClient() {
 					parseQuestions($("#questions").val());
 				})
 
+				$("#relation").change(function() {
+					parseQuestions($("#questions").val());
+				})
+
 				function parseQuestions(number) {
 					var name = $("#questions option:selected").text();
 
@@ -53,12 +59,14 @@ function initClient() {
 							case "q1":
 							$("#gender").prop("disabled", "disabled");
 							$("#age").prop("disabled", false);
-							createChart(number, name, false, true);
+							$("#relation").prop("disabled", false)
+							createChart(number, name, false, true, true);
 							break;
 							case "q2":
 							$("#gender").prop("disabled", false);
 							$("#age").prop("disabled", "disabled");
-							createChart(number, name, true, false);
+							$("#relation").prop("disabled", false)
+							createChart(number, name, true, false, true);
 							break;
 							case "q3":
 							case "q4":
@@ -71,22 +79,29 @@ function initClient() {
 							case "q11":
 							case "q12":
 							case "q13":
-							case "q14":
 							case "q15":
 							$("#gender").prop("disabled", false);
 							$("#age").prop("disabled", false);
-							createChart(number, name, true, true);
+							$("#relation").prop("disabled", false)
+							createChart(number, name, true, true, true);
+							break;
+							case "q14":
+							$("#gender").prop("disabled", false);
+							$("#age").prop("disabled", false);
+							$("#relation").prop("disabled", "disabled");
+							createChart(number, name, true, true, false);
 							break;
 						}
 					}
 
-					function createChart(question, name, isGender, isAge) {
+					function createChart(question, name, isGender, isAge, isRelation) {
 						var result = [],
 						data = [],
 						qnum = question.match(/\d+/)[0],
 						attribute = "d[" + qnum + "]",
 						genderFilter = (isGender) ? $("#gender").val() : "全部",
-						ageFilter = (isAge)? $("#age").val() : "全部";
+						ageFilter = (isAge) ? $("#age").val() : "全部",
+						relationFilter = (isRelation) ? $("#relation").val() : "全部";
 
 						if (question != "") {
 							if (qnum >= 4 && qnum <= 12) {
@@ -98,13 +113,21 @@ function initClient() {
 							else data = source;
 
 							$.each(data, function(i, d) {
-								if (d[1] == genderFilter && d[2] == ageFilter)
+								if (genderFilter == d[1] && ageFilter == d[2] && relationFilter == d[14])
 									result.push(eval(attribute));
-								else if (d[1] == genderFilter && ageFilter == "全部")
+								else if (genderFilter == d[1] && ageFilter == d[2] && relationFilter == "全部")
 									result.push(eval(attribute));
-								else if (genderFilter == "全部" && d[2] == ageFilter)
+								else if (genderFilter == d[1] && ageFilter == "全部" && relationFilter == d[14])
 									result.push(eval(attribute));
-								else if (genderFilter == "全部" && ageFilter == "全部")
+								else if (genderFilter == d[1] && ageFilter == "全部" && relationFilter == "全部")
+									result.push(eval(attribute));
+								else if (genderFilter == "全部" && ageFilter == d[2] && relationFilter == d[14])
+									result.push(eval(attribute));
+								else if (genderFilter == "全部" && ageFilter == d[2] && relationFilter == "全部")
+									result.push(eval(attribute));
+								else if (genderFilter == "全部" && ageFilter == "全部" && relationFilter == d[14])
+									result.push(eval(attribute));
+								else if (genderFilter == "全部" && ageFilter == "全部" && relationFilter == "全部")
 									result.push(eval(attribute));
 							});
 						}
@@ -125,7 +148,7 @@ function initClient() {
 								console.log(getCounts(result));
 								drawPieChart({
 									titleText: name,
-									subtitleText: $("#gender").val() + " / " + $("#age").val() + ($("#age").val() == "全部" ? "" : "歲"),
+									subtitleText: $("#gender").val() + " / " + $("#age").val() + ($("#age").val() == "全部" ? "" : "歲") + " / " + $("#relation option:selected").text(),
 									data: getCounts(result),
 									size: data.length
 								});
@@ -137,7 +160,7 @@ function initClient() {
 							console.log(getCounts(result));
 							drawPieChart({
 								titleText: name,
-								subtitleText: $("#gender").val() + " / " + $("#age").val() + ($("#age").val() == "全部" ? "" : "歲"),
+								subtitleText: $("#gender").val() + " / " + $("#age").val() + ($("#age").val() == "全部" ? "" : "歲") + " / " + $("#relation option:selected").text(),
 								data: getCounts(result)
 							});
 							showTable(getCounts(result));
