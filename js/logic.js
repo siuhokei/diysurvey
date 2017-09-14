@@ -22,6 +22,7 @@ function initClient() {
 		}).then(function(response) {
 			var source = response.result.values;
 			if (source.length > 0) {
+				console.log(source);
 				source.shift();
 
 				$(function() {
