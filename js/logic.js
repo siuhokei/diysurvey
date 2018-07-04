@@ -1,5 +1,5 @@
-var CLIENT_ID = '764637031425-6l0kforea6dnec7fce4oa4glthq3tf6e.apps.googleusercontent.com';
-var API_KEY = 'AIzaSyAtZCw-S9NvomUDRvJRdmrjjAlGgfbsHgE';
+var CLIENT_ID = '368443267226-tfju5rbgv11m95foiv55gb9eii3qdsn0.apps.googleusercontent.com';
+var API_KEY = 'AIzaSyBloOTdQmIP2o36Faeo4SPr-jx_86dsyzs';
 var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
 var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
 var SHEET_ID = '1GVYlCDuwv6jXpcNfgEVCILGLOBzP6tGJFC4Yh_pbbeU';
