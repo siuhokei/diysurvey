@@ -19,3 +19,6 @@ p, label {
 #filters {
 	padding-bottom: 1em;
 }
+#result > svg {
+	min-height: 200px;
+}
