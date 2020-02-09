@@ -19,6 +19,6 @@ p, label {
 #filters {
 	padding-bottom: 1em;
 }
-#result > svg {
+#chart > svg {
 	min-height: 200px;
 }
