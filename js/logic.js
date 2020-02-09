@@ -194,8 +194,8 @@ function initClient() {
 					}
 
 					function drawPieChart(options) {
-						var canvasHeight = 400,
-						canvasWidth = 600;
+						var canvasHeight = $(window).height();
+						canvasWidth = $(window).width();
 
 						$("#chart").html("");
 
@@ -302,6 +302,18 @@ function initClient() {
 							]
 						});
 					}
+
+					$(window).on('resize', function() {
+					    width = $(window).width();
+					    height = $(window).height();
+					    var svg = d3.select("svg")
+					      .attr("width", '100%')
+					      .attr("height", '100%')
+					      .attr('viewBox','0 0 ' + height + ' ' + width)
+					      .attr('preserveAspectRatio', 'xMinYMin')
+					      .append("g")
+					      .attr("transform", "translate(" + height + "," + width + ")");
+					});
 			} else {
 				console.log('No data found.');
 			}
