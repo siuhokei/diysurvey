@@ -194,8 +194,8 @@ function initClient() {
 					}
 
 					function drawPieChart(options) {
-						var canvasHeight = $(window).height();
-						canvasWidth = $(window).width();
+						var canvasHeight = 400;
+						canvasWidth = 600;
 
 						$("#chart").html("");
 
@@ -304,8 +304,8 @@ function initClient() {
 					}
 
 					$(window).on('resize', function() {
-					    width = $(window).width();
-					    height = $(window).height();
+					    width = 600;
+					    height = 400;
 					    var svg = d3.select("svg")
 					      .attr("width", '100%')
 					      .attr("height", '100%')
